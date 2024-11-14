@@ -1,11 +1,13 @@
-import Navbar from "@/scenes/navbar";
+import Navbar from "@/components/navbar/navbar";
 import { useEffect, useState } from "react";
 import { SelectedPage } from "@/shared/types";
-import Home from "@/scenes/home";
-import Activities from "@/scenes/activities";
+import Home from "@/pages/home";
+import Footer from "@/components/footer/footer";
+import Activities from "@/pages/activities";
 import { Activity } from "@/shared/types";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AddActivityPage from "./scenes/activities/addActivityPage";
+import AddActivityPage from "./pages/addActivityPage";
+import Profil from "./pages/profile";
 
 
 function App() {
@@ -13,16 +15,22 @@ function App() {
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
 
   const [activities, setActivities] = useState<Activity[]>([]);
+  
 
   const addActivity = (activity: Activity) => {
     setActivities(prevActivities => [...prevActivities, activity]);
   };
 
+  const removeActivity = (index: number) => {
+    setActivities(prevActivities => prevActivities.filter((_, i) => i !== index));
+  };
+
+  
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY === 0) {
         setIsTopOfPage(true);
-        setSelectedPage(SelectedPage.Kezdőlap);
       }
       if (window.scrollY !== 0) setIsTopOfPage(false);
     };
@@ -38,16 +46,16 @@ function App() {
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
-
-      <Home setSelectedPage={setSelectedPage } />
-      <Activities setSelectedPage={setSelectedPage} activities={activities} addActivity={addActivity}/>
-   
+      
       <Routes>
-        <Route path="/" element={<Home setSelectedPage={setSelectedPage} />} />
-        <Route path="/activities" element={<Activities setSelectedPage={setSelectedPage} activities={activities} addActivity={addActivity} />} />
-        <Route path="/add-activity" element={<AddActivityPage addActivity={addActivity} />} />
+        <Route path="/"  element={<Home setSelectedPage={setSelectedPage} />} />
+        <Route path="/kezdőlap"  element={<Home setSelectedPage={setSelectedPage} />} />
+        <Route path="/tevékenységnapló" element={<Activities setSelectedPage={setSelectedPage} selectedPage={selectedPage} activities={activities} addActivity={addActivity} removeActivity={removeActivity}/>} />
+        <Route path="/hozzáadás" element={<AddActivityPage addActivity={addActivity} />} />
+        <Route path="/profil" element={<Profil setSelectedPage={setSelectedPage} selectedPage={selectedPage} />} />
       </Routes>
     </Router> 
+    <Footer />
     </div>
   )
 }

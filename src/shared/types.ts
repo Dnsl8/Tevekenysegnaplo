@@ -5,10 +5,12 @@ export enum SelectedPage {
     Emlékeztetők = "emlékeztetők",
     Információk = "információk",
     Hozzáadás = "hozzáadás",
+    Lábléc= "lábléc",
   }
 
 
   export interface Activity {
+    id?: string;
     startTime: string;
     endTime: string;
     name: string [];

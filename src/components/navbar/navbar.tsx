@@ -38,16 +38,19 @@ const Navbar = ({isTopOfPage, selectedPage, setSelectedPage}: Props) => {
                                 page="Kezdőlap"
                                 selectedPage={selectedPage}
                                 setSelectedPage={setSelectedPage}
+                                toNewPage = {true}
                             />
                             <Link
                                 page="Profil"
                                 selectedPage={selectedPage}
                                 setSelectedPage={setSelectedPage}
+                                toNewPage={true}
                             />
                             <Link
                                 page="Tevékenységnapló"
                                 selectedPage={selectedPage}
                                 setSelectedPage={setSelectedPage}
+                                toNewPage={true}
                             />
                             <Link
                                 page="Emlékeztetők"
@@ -57,8 +60,11 @@ const Navbar = ({isTopOfPage, selectedPage, setSelectedPage}: Props) => {
                             </div>
                             <div className={`${flexBetween} gap-8`}>
                                 <p>Regisztráció</p>
-                                <ActionButton setSelectedPage={setSelectedPage}>
-                                    Bejelentkezés
+                                <ActionButton 
+                                    setSelectedPage={setSelectedPage}
+                                    page="tevékenységnapló"
+                                >
+                                Bejelentkezés
                                 </ActionButton>
                             </div>
                             </div>

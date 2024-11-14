@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^8.15.2",
     "@heroicons/react": "^2.1.5",
     "framer-motion": "^11.11.9",
     "react": "^18.3.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
+    "react-calendar": "^5.1.0",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {

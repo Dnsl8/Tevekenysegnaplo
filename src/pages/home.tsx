@@ -1,9 +1,11 @@
-import { SelectedPage } from '@/shared/types'
+import { SelectedPage } from '@/shared/types';
 import ActionButton from '@/shared/AtionButton';
 import HomePageGraphic from "@/assets/HomePageGraphic.png";
 import HomePageText from "@/assets/HomePageText.png";
 import { motion } from 'framer-motion';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
+import HText from '@/shared/HText';
+
 
 
 type Props = {
@@ -13,7 +15,8 @@ type Props = {
 const Home = ({setSelectedPage}: Props) => {
 
     return (
-        <section id="home" className="gap-16 bg-gray-20 py-10 md:h-full md:pb-0">
+      <section>
+        <section id="home" className="gap-16 bg-gray-20 py-10 md:h-full md:pb-20">
           {/* IMAGE AND MAIN HEADER */}
           <motion.div
             className="mx-auto w-5/6 items-center justify-center md:flex md:h-5/6"
@@ -59,15 +62,18 @@ const Home = ({setSelectedPage}: Props) => {
                   visible: { opacity: 1, x: 0 },
                 }}
               >
-                <ActionButton setSelectedPage={setSelectedPage}>
-                  Információk
+                <ActionButton 
+                  setSelectedPage={setSelectedPage}
+                  page= "Lábléc"
+                  >
+                  Kontaktok
                 </ActionButton>
                 <AnchorLink
                   className="text-sm font-bold text-primary-500 underline hover:text-secondary-500"
                   onClick={() => setSelectedPage(SelectedPage.Információk)}
                   href={`#${SelectedPage.Információk}`}
                 >
-                  <p>Kontaktok</p>
+                  <p>Információk</p>
                 </AnchorLink>
               </motion.div>
             </div>
@@ -79,10 +85,55 @@ const Home = ({setSelectedPage}: Props) => {
             >
               <img alt="home-pageGraphic" src={HomePageGraphic} />
             </div>
+
+      
           </motion.div>
-    
           
         </section>
+
+        <section id="információk" className="bg-gray-20 py-10 px-5 md:py-5">
+        <div className="container mx-auto">
+          <HText>Információk</HText>
+          <div className="md:flex md:flex-wrap md:gap-10">
+            {/* First Row */}
+            <div className="pt-16 md:flex md:justify-between md:w-full mb-8 space-y-4 md:space-y-0">
+              <p className="md:w-1/2">
+              Vestibulum lorem velit, placerat a nulla ac, mattis euismod eros. Aliquam eget efficitur tortor. 
+              Duis a accumsan nisl, eu maximus elit. Suspendisse tristique consectetur finibus. Curabitur lobortis 
+              ex ac neque sodales rutrum. Aliquam maximus purus mi, vel feugiat sem gravida vitae. Quisque ornare 
+              ipsum et ligula pulvinar fermentum. 
+             
+              </p>
+              <p className="md:w-1/2">
+              Vestibulum lorem velit, placerat a nulla ac, mattis euismod eros. Aliquam eget efficitur tortor. 
+              Duis a accumsan nisl, eu maximus elit. Suspendisse tristique consectetur finibus. Curabitur lobortis 
+              ex ac neque sodales rutrum. Aliquam maximus purus mi, vel feugiat sem gravida vitae. Quisque ornare 
+              ipsum et ligula pulvinar fermentum. 
+              
+              </p>
+            </div>
+            {/* Second Row */}
+            <div className="pb-24 md:flex md:justify-between md:w-full space-y-4 md:space-y-0">
+              <p className="md:w-1/2">
+              Vestibulum lorem velit, placerat a nulla ac, mattis euismod eros. Aliquam eget efficitur tortor. 
+              Duis a accumsan nisl, eu maximus elit. Suspendisse tristique consectetur finibus. Curabitur lobortis 
+              ex ac neque sodales rutrum. Aliquam maximus purus mi, vel feugiat sem gravida vitae. Quisque ornare 
+              ipsum et ligula pulvinar fermentum. 
+             
+              </p>
+              <p className="md:w-1/2">
+              Vestibulum lorem velit, placerat a nulla ac, mattis euismod eros. Aliquam eget efficitur tortor. 
+              Duis a accumsan nisl, eu maximus elit. Suspendisse tristique consectetur finibus. Curabitur lobortis 
+              ex ac neque sodales rutrum. Aliquam maximus purus mi, vel feugiat sem gravida vitae. Quisque ornare 
+              ipsum et ligula pulvinar fermentum. 
+             
+              </p>
+            </div>
+          </div>
+        </div>
+        </section>
+        </section>
+        
       );
     };
 
