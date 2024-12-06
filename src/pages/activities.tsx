@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Activity } from "@/shared/types";
 import Link from "@/components/navbar/Link";
 import { TrashIcon } from "@heroicons/react/24/outline";
+import { getMessages } from "@/elastic";
+import { useEffect, useState } from "react";
 
 
 type Props = {
@@ -14,7 +16,21 @@ type Props = {
 };
 
 const Activities = ({setSelectedPage, activities, selectedPage, addActivity, removeActivity}: Props) => {
+
+  const [messages, setMessages] = useState<string[]>([]);
  
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const data = await getMessages('test'); 
+        setMessages(data.map((doc) => doc.message)); 
+      } catch (error) {
+        console.error('Error fetching messages:', error);
+      }
+    };
+
+    fetchMessages();
+  }, []);
     
     const getTodaysDate = () => {
         const today = new Date();
@@ -88,6 +104,18 @@ const Activities = ({setSelectedPage, activities, selectedPage, addActivity, rem
 
     
       <h1 className="basis-3/5 font-montserrat text-3xl font-bold w-5/6 mx-auto flex flex-col items-center text-center">Tevékenységnapló</h1>
+      
+      <div>
+        <h2>Data from Elasticsearch:</h2>
+        <ul>
+          {messages.length > 0 ? (
+            messages.map((msg, index) => <li key={index}>{msg}</li>)
+          ) : (
+            <li>No messages found.</li>
+          )}
+        </ul>
+      </div>
+      
       <p className="my-5 text-sm w-5/6 mx-auto flex flex-col items-center text-center">
       Sed eget imperdiet orci, vitae efficitur ipsum. Ut sed dui mauris. 
       Aliquam eget tempor ex, vulputate accumsan sem. Donec elementum accumsan enim, 
